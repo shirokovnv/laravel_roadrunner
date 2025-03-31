@@ -1,0 +1,41 @@
+services:
+    php:
+        build: .docker/php
+        ports:
+            - 5173:5173
+        volumes:
+            - .:/var/www:cached
+
+    nginx:
+        image: nginx
+        ports:
+            - 80:80
+        volumes:
+            - .:/var/www
+            - .docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+            - .docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+        depends_on:
+            - php
+
+    roadrunner:
+        build: .docker/php
+        environment:
+            - CHOKIDAR_USEPOLLING=true
+        ports:
+            - 8000:8000
+        command: "php -d variables_order=EGPCS /var/www/artisan octane:start --server=roadrunner --workers=4 --watch --host=0.0.0.0 --rpc-port=6001 --port='${APP_PORT:-8000}'"
+        # command: "/var/www/rr serve -c .rr.yaml -o http.address=0.0.0.0:8000 -o rpc.listen='tcp://0.0.0.0:6001'"
+        volumes:
+            - .:/var/www:cached
+
+    db:
+        image: postgres:16
+        ports:
+            - 5432:5432
+        volumes:
+            - .docker/db/data:/var/lib/postgresql/data
+            - .docker/db/sql:/docker-entrypoint-initdb.d
+        environment:
+            - POSTGRES_USER=laravel
+            - POSTGRES_PASSWORD=laravel
+            - POSTGRES_DB=laravel
