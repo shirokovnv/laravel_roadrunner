@@ -5,7 +5,7 @@
 - Laravel v12.x
 - PHP v8.3.x
 - PostgreSQL v16.x
-- Roadrunner v2024.3.5
+- RoadRunner v2024.3.5
 
 # Requirements
 - Stable version of [Docker](https://docs.docker.com/engine/install/)
@@ -38,6 +38,11 @@
 ### Roadrunner
 
 - URL: http://localhost:8000
+
+## Tests
+
+- `ab -n 1000 -c 10 http://localhost/test_heavy_logic/` - for PHP-FPM
+- `ab -n 1000 -c 10 http://localhost:8000/test_heavy_logic/` - for RoadRunner
 
 ### Issues:
 
