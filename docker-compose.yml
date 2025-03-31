@@ -21,12 +21,16 @@ services:
         build: .docker/php
         environment:
             - CHOKIDAR_USEPOLLING=true
+            - PHP_IDE_CONFIG=serverName=Octane.Dev
         ports:
             - 8000:8000
         command: "php -d variables_order=EGPCS /var/www/artisan octane:start --server=roadrunner --workers=4 --watch --host=0.0.0.0 --rpc-port=6001 --port='${APP_PORT:-8000}'"
         # command: "/var/www/rr serve -c .rr.yaml -o http.address=0.0.0.0:8000 -o rpc.listen='tcp://0.0.0.0:6001'"
         volumes:
             - .:/var/www:cached
+            - .docker/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini:ro
+        extra_hosts:
+            - 'host.docker.internal:host-gateway'
 
     db:
         image: postgres:16
