@@ -1,5 +1,7 @@
 # Laravel Roadrunner Application
 
+The project is used for [OTUS](https://otus.ru/) open lesson about RoadRunner and Laravel.
+
 ## Starter
 
 - Laravel v12.x
