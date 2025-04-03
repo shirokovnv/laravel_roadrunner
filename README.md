@@ -23,9 +23,7 @@ The project is used for [OTUS](https://otus.ru/) open lesson about RoadRunner an
 - `docker compose exec php bash`
 - `chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache /var/www/storage/logs`
 - `chmod -R 775 /var/www/storage /var/www/bootstrap/cache /var/www/storage/logs`
-- `composer install`
-- `php artisan key:generate`
-- `php artisan migrate`
+- `composer setup`
 
 ## From the second time onwards
 - `docker compose up -d`
