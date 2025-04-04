@@ -63,6 +63,7 @@
             "php artisan key:generate",
             "php artisan config:cache",
             "php artisan migrate",
+            "php artisan octane:install",
             "npm install",
             "npm run build"
         ]
