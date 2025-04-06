@@ -2,6 +2,8 @@
 
 The project is used for [OTUS](https://otus.ru/) open lesson about RoadRunner and Laravel.
 
+[youtube link](https://www.youtube.com/watch?v=fjJZkQESKMI) 
+
 ## Starter
 
 - Laravel v12.x
